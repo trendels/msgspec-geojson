@@ -1,0 +1,62 @@
+[project]
+name = "msgspec-geojson"
+version = "0.1.0"
+description = "GeoJSON types for msgspec"
+readme = "README.md"
+authors = [
+    { name = "Stanis Trendelenburg", email = "st@trendels.name" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "msgspec>=0.20.0",
+]
+
+[project.urls]
+Source = "https://github.com/trendels/msgspec-geojson"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "coverage>=7.13.5",
+    "pyright>=1.1.408",
+    "pytest>=9.0.0",
+    "ruff>=0.16.0",
+]
+
+[tool.ruff]
+include = [
+    "pyproject.toml",
+    "src/**/*.py",
+    "tests/**/*.py",
+    "examples/**/*.py",
+]
+
+[tool.ruff.lint]
+
+[tool.ruff.format]
+preview = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["src", "tests", "examples"]
+strict = ["src", "tests", "examples"]
+reportUnnecessaryTypeIgnoreComment = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+exclude_also = [
+    "@overload$",
+    "raise NotImplementedError",
+]
+
+[tool.pytest]
+testpaths = ["tests"]
+verbosity_assertions = "2"
+addopts = ["--import-mode=importlib"]
