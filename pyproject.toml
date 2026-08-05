@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Stanis Trendelenburg", email = "st@trendels.name" }
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "msgspec>=0.20.1",
 ]
