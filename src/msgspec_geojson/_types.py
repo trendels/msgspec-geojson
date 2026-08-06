@@ -1,6 +1,6 @@
 from typing import Any
 
-from msgspec import UNSET, Struct, UnsetType
+from msgspec import Struct
 
 type Position = tuple[float, float]
 
@@ -58,20 +58,20 @@ type Geometry = (
 )
 
 
-class Feature[G: Geometry | None, T](Struct, tag=True):
+class Feature[G: Geometry | None, T](Struct, tag=True, omit_defaults=True):
     """A GeoJSON Feature"""
 
-    geometry: G | None = None
-    properties: T | None = None
-    id: str | int | UnsetType = UNSET
-    bbox: tuple[float, float, float, float] | UnsetType = UNSET
+    geometry: G | None
+    properties: T | None
+    id: str | int | None = None
+    bbox: tuple[float, float, float, float] | None = None
 
 
-class FeatureCollection[G: Geometry | None, T](Struct, tag=True):
+class FeatureCollection[G: Geometry | None, T](Struct, tag=True, omit_defaults=True):
     """A GeoJSON FeatureCollection"""
 
     features: list[Feature[G, T]]
-    bbox: tuple[float, float, float, float] | UnsetType = UNSET
+    bbox: tuple[float, float, float, float] | None = None
 
 
 type GeoJSON = Geometry | Feature[Geometry, Any] | FeatureCollection[Geometry, Any]
