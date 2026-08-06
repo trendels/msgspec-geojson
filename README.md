@@ -9,7 +9,7 @@ Inspired by the [msgspec GeoJSON example code][geojson_example] and [geojson-pyd
 [geojson_example]: https://jcristharif.com/msgspec/examples/geojson.html
 [geojson-pydantic]: https://pypi.org/project/geojson-pydantic/
 
-This lets you parse GeoJSON into type-safe objects, including propeties, and
+This lets you parse GeoJSON into type-safe objects, including properties, and
 serialize those objects back to GeoJSON:
 
 ~~~python
