@@ -166,7 +166,6 @@ def test_decode_2d_bbox():
                 (-10.0, -10.0),
             ]
         ]),
-        None,
         bbox=(-10.0, -10.0, 10.0, 10.0),
     )
 
@@ -181,7 +180,6 @@ def test_encode_2d_bbox():
                 (-10.0, -10.0),
             ]
         ]),
-        None,
         bbox=(-10.0, -10.0, 10.0, 10.0),
     )
     serialized = msgspec.json.encode(obj).decode()
@@ -195,11 +193,11 @@ def test_decode_id():
         type=Feature[None, None],
     )
 
-    assert obj == Feature(None, None, id=1)
+    assert obj == Feature(id=1)
 
 
 def test_encode_id():
-    obj = Feature[None, None](None, None, id=1)
+    obj = Feature[None, None](id=1)
     serialized = msgspec.json.encode(obj).decode()
 
     assert json.loads(serialized) == json.loads(
