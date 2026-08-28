@@ -30,4 +30,11 @@ doctest:
 
 # Run tests when code changes (requires "watchexec")
 watch:
-    watchexec -w src -w tests -e py -c -- 'uv run pytest --exitfirst --failed-first'
+    watchexec \
+        --watch=src \
+        --watch=tests \
+        --exts=py \
+        --clear \
+        --wrap-process=session \
+        -- \
+        'uv run pytest --exitfirst --failed-first'
