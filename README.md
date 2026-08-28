@@ -6,7 +6,7 @@ Inspired by the [msgspec GeoJSON example code][geojson_example] and [geojson-pyd
 
 [GeoJSON]: https://geojson.org
 [msgspec]: https://msgspec.dev/
-[geojson_example]: https://jcristharif.com/msgspec/examples/geojson.html
+[geojson_example]: https://msgspec.dev/examples/geojson
 [geojson-pydantic]: https://pypi.org/project/geojson-pydantic/
 
 This lets you parse GeoJSON into type-safe objects, including properties, and
