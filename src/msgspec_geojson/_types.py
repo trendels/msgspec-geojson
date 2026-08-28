@@ -61,8 +61,8 @@ type Geometry = (
 class Feature[G: Geometry | None, T](Struct, tag=True):
     """A GeoJSON Feature"""
 
-    geometry: G | None = None
-    properties: T | None = None
+    geometry: G
+    properties: T
     id: str | int | UnsetType = UNSET
     bbox: tuple[float, float, float, float] | UnsetType = UNSET
 
