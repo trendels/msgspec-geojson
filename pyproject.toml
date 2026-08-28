@@ -1,6 +1,6 @@
 [project]
 name = "msgspec-geojson"
-version = "0.2.0"
+version = "0.2.1"
 description = "GeoJSON types for msgspec"
 readme = "README.md"
 authors = [
@@ -17,7 +17,7 @@ license-files = ["LICENSE"]
 Source = "https://github.com/trendels/msgspec-geojson"
 
 [build-system]
-requires = ["uv_build>=0.11.32,<0.12.0"]
+requires = ["uv_build>=0.12.7,<0.13.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
