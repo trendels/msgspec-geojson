@@ -21,13 +21,11 @@ serialize those objects back to GeoJSON:
 ...    name: str
 ...    kind: str
 
->>> type PoiFeature = Feature[Point, PoiProperties]
-
 >>> obj = msgspec.json.decode("""
 ...     {"type": "Feature", "id": 1,
 ...      "properties": {"name": "Zoo Zürich", "kind": "tourism/zoo"},
 ...      "geometry": {"type": "Point", "coordinates": [8.574695, 47.384510]}}
-... """, type=PoiFeature)
+... """, type=Feature[Point, PoiProperties])
 
 >>> obj.id
 1
