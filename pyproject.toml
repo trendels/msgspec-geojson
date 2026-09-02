@@ -1,6 +1,6 @@
 [project]
 name = "msgspec-geojson"
-version = "0.2.1"
+version = "0.2.2"
 description = "GeoJSON types for msgspec"
 readme = "README.md"
 authors = [
