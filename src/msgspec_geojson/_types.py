@@ -58,20 +58,22 @@ type Geometry = (
 )
 
 
-class Feature[G: Geometry | None, T](Struct, tag=True):
+class Feature[G: Geometry | None, P](Struct, tag=True):
     """A GeoJSON Feature"""
 
     geometry: G
-    properties: T
+    properties: P
     id: str | int | UnsetType = UNSET
     bbox: tuple[float, float, float, float] | UnsetType = UNSET
 
 
-class FeatureCollection[G: Geometry | None, T](Struct, tag=True):
+class FeatureCollection[F: Feature[Any, Any]](Struct, tag=True):
     """A GeoJSON FeatureCollection"""
 
-    features: list[Feature[G, T]]
+    features: list[F]
     bbox: tuple[float, float, float, float] | UnsetType = UNSET
 
 
-type GeoJSON = Geometry | Feature[Geometry, Any] | FeatureCollection[Geometry, Any]
+type GeoJSON = (
+    Geometry | Feature[Geometry, Any] | FeatureCollection[Feature[Geometry, Any]]
+)

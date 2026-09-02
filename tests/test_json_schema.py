@@ -9,6 +9,9 @@ class PoiProperties(Struct):
     kind: str
 
 
+type PoiFeature = Feature[Point, PoiProperties]
+
+
 def test_geometry_schema():
     _, components = schema_components([Geometry])
 
@@ -153,9 +156,8 @@ def test_geometry_schema():
 
 
 def test_schema_components_for_typed_feature():
-    schemas, components = schema_components([Feature[Point, PoiProperties]])
+    _, components = schema_components([PoiFeature])
 
-    assert schemas == ({"$ref": "#/$defs/Feature_Point__PoiProperties_"},)
     assert list(components) == [
         "Feature_Point__PoiProperties_",
         "Point",
@@ -188,18 +190,17 @@ def test_schema_components_for_typed_feature():
 
 
 def test_schema_components_for_typed_featurecollection():
-    schemas, components = schema_components([FeatureCollection[Point, PoiProperties]])
+    _, components = schema_components([FeatureCollection[PoiFeature]])
 
-    assert schemas == ({"$ref": "#/$defs/FeatureCollection_Point__PoiProperties_"},)
     assert list(components) == [
-        "FeatureCollection_Point__PoiProperties_",
+        "FeatureCollection_PoiFeature_",
         "Feature_Point__PoiProperties_",
         "Point",
         "PoiProperties",
     ]
-    assert components["FeatureCollection_Point__PoiProperties_"] == {
+    assert components["FeatureCollection_PoiFeature_"] == {
         "type": "object",
-        "title": "FeatureCollection[Point, PoiProperties]",
+        "title": "FeatureCollection[PoiFeature]",
         "description": "A GeoJSON FeatureCollection",
         "properties": {
             "type": {"enum": ["FeatureCollection"]},

@@ -1,5 +1,4 @@
 import json
-from typing import Any
 
 import msgspec.json
 from msgspec import Struct
@@ -8,7 +7,6 @@ from msgspec_geojson import (
     Feature,
     FeatureCollection,
     GeoJSON,
-    Geometry,
     LineString,
     Point,
     Polygon,
@@ -88,7 +86,7 @@ rfc7946_example_2 = """
 def test_decode_example_featurecollection():
     obj = msgspec.json.decode(rfc7946_example_1, type=GeoJSON)
 
-    assert obj == FeatureCollection[Geometry, dict[str, Any]](
+    assert obj == FeatureCollection(
         features=[
             Feature(
                 Point((102.0, 0.5)),
@@ -120,7 +118,7 @@ def test_decode_example_featurecollection():
 
 
 def test_encode_example_featurecollection():
-    obj = FeatureCollection[Geometry, dict[str, Any]](
+    obj = FeatureCollection(
         features=[
             Feature(
                 Point((102.0, 0.5)),
@@ -227,7 +225,9 @@ def test_decode_featurecollection_points():
         id: int
         name: str
 
-    obj = msgspec.json.decode(fc_json, type=FeatureCollection[Point, PoiProperties])
+    obj = msgspec.json.decode(
+        fc_json, type=FeatureCollection[Feature[Point, PoiProperties]]
+    )
 
     assert obj == FeatureCollection([
         Feature(Point((0, 0)), PoiProperties(1, "origin")),
